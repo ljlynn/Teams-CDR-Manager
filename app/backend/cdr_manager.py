@@ -7,24 +7,17 @@ from datetime import datetime, timezone, timedelta
 from graph import Graph
 from cosmos import CosmosDB
 
-# Construct the relative path of the YAML file
-yaml_file = os.path.join(os.path.dirname(__file__), 'config.yaml')
-
-# Open and parse the YAML file
-with open(yaml_file, 'r') as f:
-    config = yaml.safe_load(f)
-
-TENANT_ID = config["defaults"]["tenant_id"]
-CLIENT_ID = config["defaults"]["client_id"]
-CLIENT_SECRET = config["defaults"]["client_secret"]
-OPERATOR_CDR_DATABASE = config["azure"]["OperatorCdr"]["database_name"]
-OPERATOR_CDR_CONTAINER = config["azure"]["OperatorCdr"]["container_name"]
-OPERATOR_CDR_PARTITION_KEY = config["azure"]["OperatorCdr"]["partition_key"]
-DR_CDR_DATABASE = config["azure"]["DRCdr"]["database_name"]
-DR_CDR_CONTAINER = config["azure"]["DRCdr"]["container_name"]
-DR_CDR_PARTITION_KEY = config["azure"]["DRCdr"]["partition_key"]
-DB_KEY = config["azure"]["key"]
-DB_ENDPOINT_URI = config["azure"]["endpoint"]
+TENANT_ID = os.environ.get("TENANT_ID")
+CLIENT_ID = os.environ.get("CLIENT_ID")
+CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
+OPERATOR_CDR_DATABASE = os.environ.get("CDR_COSMOS_OPERATOR_DB_NAME")
+OPERATOR_CDR_CONTAINER = os.environ.get("CDR_COSMOS_OPERATOR_CONTAINER_NAME")
+OPERATOR_CDR_PARTITION_KEY = os.environ.get("CDR_COSMOS_OPERATOR_PARTITION_KEY")
+DR_CDR_DATABASE = os.environ.get("CDR_COSMOS_DR_DB_NAME")
+DR_CDR_CONTAINER = os.environ.get("CDR_COSMOS_DR_CONTAINER_NAME")
+DR_CDR_PARTITION_KEY = os.environ.get("CDR_COSMOS_DR_PARTITION_KEY")
+DB_KEY = os.environ.get("CDR_COSMOS_KEY")
+DB_ENDPOINT_URI = os.environ.get("CDR_COSMOS_ENDPOINT_URI")
 
 
 def get_start_and_end_dates(input_date=datetime.now(tz=timezone.utc), days=30):
