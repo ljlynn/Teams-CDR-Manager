@@ -1,3 +1,5 @@
+# This file contains the main function for the CDR Manager application
+# This file is called by the main.py file in the root directory
 import requests
 import yaml
 import os.path
