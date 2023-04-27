@@ -61,18 +61,4 @@ class CosmosDB:
             return 0
         except exceptions.CosmosHttpResponseError as e:
             return e.status_code
-        
-    # q: Give me an example of how to user the delete_container function
-    # a:
-    # from cosmos import CosmosDB
-    # cosmos = CosmosDB(url, key, database_name, container_name)
-    # cosmos.delete_container(container_name)
-    # print("Container deleted")
-
-    # q: Give me an example of how to user the delete_database function
-    # a:
-    # from cosmos import CosmosDB
-    # cosmos = CosmosDB(url, key, database_name, container_name)
-    # cosmos.delete_database(database_name)
-    # print("Database deleted")
     
