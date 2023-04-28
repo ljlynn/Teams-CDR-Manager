@@ -135,8 +135,7 @@ share/
 
 pyvenv.cfg
 
-cosmosold.py
-cosmostest.py
+backend/Test\ Scripts/
 
 # Spyder project settings
 .spyderproject
