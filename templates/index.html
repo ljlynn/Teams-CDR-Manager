@@ -1,55 +1,56 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-    <div class="container-fluid">
-        <main role="main" class="container">
-        <table class="table table-striped mx-auto">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Call ID</th>
-                    <th>User ID</th>
-                    <th>User Principal Name</th>
-                    <th>User Display Name</th>
-                    <th>Start Date Time</th>
-                    <th>End Date Time</th>
-                    <th>Duration</th>
-                    <th>Charge</th>
-                    <th>Call Type</th>
-                    <th>Currency</th>
-                    <th>Callee Number</th>
-                    <th>Usage Country Code</th>
-                    <th>Tenant Country Code</th>
-                    <th>Connection Charge</th>
-                    <th>Caller Number</th>
-                    <th>Destination Context</th>
-                    <th>Destination Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in data %}
-                    <tr>
-                        <td>{{ row.id }}</td>
-                        <td>{{ row.callId }}</td>
-                        <td>{{ row.userId }}</td>
-                        <td>{{ row.userPrincipalName }}</td>
-                        <td>{{ row.userDisplayName }}</td>
-                        <td>{{ row.startDateTime }}</td>
-                        <td>{{ row.endDateTime }}</td>
-                        <td>{{ row.duration }}</td>
-                        <td>{{ row.charge }}</td>
-                        <td>{{ row.callType }}</td>
-                        <td>{{ row.currency }}</td>
-                        <td>{{ row.calleeNumber }}</td>
-                        <td>{{ row.usageCountryCode }}</td>
-                        <td>{{ row.tenantCountryCode }}</td>
-                        <td>{{ row.connectionCharge }}</td>
-                        <td>{{ row.callerNumber }}</td>
-                        <td>{{ row.destinationContext }}</td>
-                        <td>{{ row.destinationName }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+<main role="main">
+<h2>Teams Operator CDR Records</h2>
+<div id="responsive">
+  <table class="table table-striped">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Call ID</th>
+              <!-- <th>User ID</th> -->
+              <th>User Principal Name</th>
+              <th>User Display Name</th>
+              <th>Start Date Time</th>
+              <th>End Date Time</th>
+              <th>Duration</th>
+              <!-- <th>Charge</th> -->
+              <th>Call Type</th>
+              <!-- <th>Currency</th> -->
+              <th>Callee Number</th>
+              <th>Usage Country Code</th>
+              <th>Tenant Country Code</th>
+              <th>Connection Charge</th>
+              <th>Caller Number</th>
+              <th>Destination Context</th>
+              <th>Destination Name</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for row in data %}
+              <tr>
+                  <td class="fs-6">{{ row.id }}</td>
+                  <td class="fs-6">{{ row.callId }}</td>
+                  <!-- <td class="fs-6">{{ row.userId }}</td> -->
+                  <td class="fs-6">{{ row.userPrincipalName }}</td>
+                  <td class="fs-6">{{ row.userDisplayName }}</td>
+                  <td class="fs-6">{{ row.startDateTime }}</td>
+                  <td class="fs-6">{{ row.endDateTime }}</td>
+                  <td class="fs-6">{{ row.duration }}</td>
+                  <!-- <td class="fs-6">{{ row.charge }}</td> -->
+                  <td class="fs-6">{{ row.callType }}</td>
+                  <!-- <td class="fs-6">{{ row.currency }}</td> -->
+                  <td class="fs-6">{{ row.calleeNumber }}</td>
+                  <td class="fs-6">{{ row.usageCountryCode }}</td>
+                  <td class="fs-6">{{ row.tenantCountryCode }}</td>
+                  <td class="fs-6">{{ row.connectionCharge }}</td>
+                  <td class="fs-6">{{ row.callerNumber }}</td>
+                  <td class="fs-6">{{ row.destinationContext }}</td>
+                  <td class="fs-6">{{ row.destinationName }}</td>
+              </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
 {% endblock %}
