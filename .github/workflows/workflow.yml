@@ -1,7 +1,7 @@
 # For more info on Python, GitHub Actions, and Azure App Service 
 # please head to https://aka.ms/python-webapps-actions
 
-name: Build and deploy Flask + Vue.js app to Azure App Service
+name: Build and deploy CDR Manager App to Azure App Service
 
 on:
   push:
