@@ -1,72 +1,60 @@
-# For more info on Python, GitHub Actions, and Azure App Service 
-# please head to https://aka.ms/python-webapps-actions
-
-name: Build and deploy CDR Manager App to Azure App Service
-
+# Python on Linux Web App
+# Build a Python project (using Django/Flask/Bottle frameworks) and deploy it to Azure as a Linux web app.
+name: Deploy Python package to Azure Web App as a Linux web app.
 on:
-  push:
-    branches: 
-      - main
-
+  [push]
+# CONFIGURATION
+# For help, go to https://github.com/Azure/Actions
+# See this in-depth article on CI for Python applications: https://azure.github.io/AppService/2020/12/11/cicd-for-python-apps.html
+#
+# 1. Set up the following secrets in your repository:
+#   AZURE_CREDENTIALS_GITHUB_SECRET
+#
+# 2. Change these variables for your configuration:
 env:
-  WEBAPP_NAME: 'CDRManager-ll'             # Replace with the name of your Azure web app
-  RESOURCE_GROUP: 'TeamsCDRMVP'   # Replace with the name of your Resource Group
+  AZURE_WEBAPP_NAME: CDRManager-ll # set this to your application's name
+  WORKING_DIRECTORY: '.'         # set this to the path to your path of working directory inside github repository, defaults to the repository root
+  PYTHON_VERSION: '3.9' 
+  STARTUP_COMMAND: ''           # set this to the startup command required to start the gunicorn server. default it is empty
 
+name: Build and deploy Python app
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-
-    - name: Create and start virtual environment
-      run: |
-        python3 -m venv venv
-        source venv/bin/activate
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-
-    # - name: test with PyTest
-    #   run: pytest --cov=app --cov-report=xml
-
-    - name: Upload artifact for deployment jobs
-      uses: actions/upload-artifact@v2
-      with:
-        name: python-app
-        path: |
-          . 
-          !node_modules/
-          !venv/
-  
-  deploy-to-webapp:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: python-app
-          path: .
-
-      - name: Log in to Azure CLI
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
-
-      - name: Configure deployment and runtime settings on the webapp
-        run: |
-          az configure --defaults ${{ env.RESOURCE_GROUP }}
-          az webapp config appsettings --name ${{ env.WEBAPP_NAME }} --settings \
-              SCM_DO_BUILD_DURING_DEPLOYMENT=true \
-              FLASK_ENV=production 
-          az webapp config set --name ${{ env.WEBAPP_NAME }} \
-            --startup-file "gunicorn --bind=0.0.0.0 --timeout 600 app:app"
-      - name: Deploy to App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ env.WEBAPP_NAME}}
+ build-and-deploy:
+  runs-on: ubuntu-latest
+  environment: dev
+  steps:
+  # checkout the repo 
+  - uses: actions/checkout@main
+  # setup python
+  - name: Setup Python
+    uses: actions/setup-python@v1
+    with:
+     python-version: ${{ env.PYTHON_VERSION }}
+  # install dependencies
+  - name: python install
+    working-directory: ${{ env.WORKING_DIRECTORY }}
+    run: |
+     sudo apt install python${{ env.PYTHON_VERSION }}-venv
+     python -m venv --copies antenv
+     source antenv/bin/activate
+     pip install setuptools
+     pip install -r requirements.txt
+  # Azure login
+  - uses: azure/login@v1
+    with:
+     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+  - uses: azure/appservice-settings@v1
+    with:
+     app-name: ${{ env.AZURE_WEBAPP_NAME }}
+     mask-inputs: false
+     general-settings-json: '{"linuxFxVersion": "PYTHON|${{ env.PYTHON_VERSION }}"}' #'General configuration settings as Key Value pairs'
+  # deploy web app
+  - uses: azure/webapps-deploy@v2
+    with:
+     app-name: ${{ env.AZURE_WEBAPP_NAME }}
+     package: ${{ env.WORKING_DIRECTORY }}
+     startup-command: ${{ env.STARTUP_COMMAND }}
+  # Azure logout
+  - name: logout
+    run: |
+     az logout
