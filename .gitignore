@@ -172,3 +172,5 @@ cython_debug/
 #.idea/
 
 .yaml
+backend/Data Examples/DR Cosmos Shcema.txt
+backend/Data Examples/OP Cosmos Schema.txt
