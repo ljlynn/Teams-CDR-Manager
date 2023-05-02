@@ -1,5 +1,4 @@
-configs/
-backend/
+/configs
 .gihub/
 # Byte-compiled / optimized / DLL files
 __pycache__/
