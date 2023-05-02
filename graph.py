@@ -1,9 +1,4 @@
-import datetime
-import os
 import requests
-import yaml
-
-from datetime import timedelta, timezone
 
 class Graph:
 
