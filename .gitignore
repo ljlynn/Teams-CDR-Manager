@@ -1,2 +1,6 @@
 configs/app_service_app_settings_withkeys.txt
 configs/app_service_app_settings.txt
+__pycache__/app.cpython-38.pyc
+__pycache__/cosmos.cpython-38.pyc
+__pycache__/graph.cpython-38.pyc
+__pycache__/startup.cpython-38.pyc
