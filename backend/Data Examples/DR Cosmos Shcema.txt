@@ -1,0 +1,30 @@
+# generate a table that this displays this data with headers
+
+{
+    "id": "0fc02a3c-91f1-5d4a-8122-6fad665260fb",
+    "correlationId": "58e54b71-6eae-488a-94c9-d47f7c3ceb03",
+    "userId": "c632d2e3-b3b1-4385-8aee-3b25d020b5b9",
+    "userPrincipalName": "logan.lynn@lynnlabsinc.onmicrosoft.com",
+    "userDisplayName": "Logan Lynn",
+    "startDateTime": "2023-04-20T14:33:33.324Z",
+    "inviteDateTime": "2023-04-20T14:33:16.585Z",
+    "failureDateTime": null,
+    "endDateTime": "2023-04-20T14:33:39.324Z",
+    "duration": 6,
+    "callType": "ByotIn",
+    "successfulCall": true,
+    "callerNumber": "+19184400850",
+    "calleeNumber": "+19183329997",
+    "mediaPathLocation": "USWE",
+    "signalingLocation": "USEA",
+    "finalSipCode": 0,
+    "callEndSubReason": 540000,
+    "finalSipCodePhrase": "BYE",
+    "trunkFullyQualifiedDomainName": "ac-sbc1.lynnlabs.net",
+    "mediaBypassEnabled": false,
+    "_rid": "zlF7ALjTvJYCAAAAAAAAAA==",
+    "_self": "dbs/zlF7AA==/colls/zlF7ALjTvJY=/docs/zlF7ALjTvJYCAAAAAAAAAA==/",
+    "_etag": "\"9d01306f-0000-0500-0000-644fdad70000\"",
+    "_attachments": "attachments/",
+    "_ts": 1682954967
+}

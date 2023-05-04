@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<main role="main">
+    <div id="responsive">
+    {% if type == "op" %}
+        {% for call_detail in call_details %}
+            <h2>Teams Operator CDR Records</h2>
+            <ul class="list-unstyled">
+                <li><strong>Call ID</strong></li>
+                <li>{{ call_detail.callId }}</li>
+                <li><strong>User ID</strong></li>
+                <li>{{ call_detail.userId }}</li>
+                <li><strong>User Principal Name</strong></li>
+                <li>{{ call_detail.userPrincipalName }}</li>
+                <li><strong>User Display Name</strong></li>
+                <li>{{ call_detail.userDisplayName }}</li>
+                <li><strong>Start Date Time</strong></li>
+                <li>{{ call_detail.startDateTime }}</li>
+                <li><strong>End Date Time</strong></li>
+                <li>{{ call_detail.endDateTime }}</li>
+                <li><strong>Duration</strong></li>
+                <li>{{ call_detail.duration }}</li>
+                <li><strong>Charge</strong></li>
+                <li>{{ call_detail.charge }}</li>
+                <li><strong>Call Type</strong></li>
+                <li>{{ call_detail.callType }}</li>
+                <li><strong>Currency</strong></li>
+                <li>{{ call_detail.currency }}</li>
+                <li><strong>Callee Number</strong></li>
+                <li>{{ call_detail.calleeNumber }}</li>
+                <li><strong>Caller Number</strong></li>
+                <li>{{ call_detail.callerNumber }}</li>
+                <li><strong>Destination Context</strong></li>
+                <li><strong>Usage Country Code</strong></li>
+                <li>{{ call_detail.usageCountryCode }}</li>
+                <li><strong>Tenant Country Code</strong></li>
+                <li>{{ call_detail.tenantCountryCode }}</li>
+                <li><strong>Connection Charge</strong></li>
+                <li>{{ call_detail.connectionCharge }}</li>
+                <li><strong>Destination Context</strong></li>
+                <li>{{ call_detail.destinationContext }}</li>
+                <li><strong>Destination Name</strong></li>
+                <li>{{ call_detail.destinationName }}</li>
+        {% endfor %}
+        </ul>
+    {% elif type == "dr" %}
+        <h2>Teams Direct Routing Call Records</h2>
+        {% for call_detail in call_details %}
+            <ul class="list-unstyled">
+                <li><strong>Correlation ID</strong></li>
+                <li>{{ call_detail.correlationId }}</li>
+                <li><strong>Start Date Time</strong></li>
+                <li>{{ call_detail.startDateTime }}</li>
+                <li><strong>End Date Time</strong></li>
+                <li>{{ call_detail.endDateTime }}</li>
+                <li><strong>Duration</strong></li>
+                <li>{{ call_detail.duration }}</li>
+                <li><strong>Call Type</strong></li>
+                <li>{{ call_detail.callType }}</li>
+                <li><strong>Successful Call</strong></li>
+                <li>{{ call_detail.successfulCall }}</li>
+                <li><strong>Caller Number</strong></li>
+                <li>{{ call_detail.callerNumber }}</li>
+                <li><strong>Callee Number</strong></li>
+                <li>{{ call_detail.calleeNumber }}</li>
+                <li><strong>Media Path Location</strong></li>
+                <li>{{ call_detail.mediaPathLocation }}</li>
+                <li><strong>Signaling Location</strong></li>
+                <li>{{ call_detail.signalingLocation }}</li>
+                <li><strong>Final SIP Code</strong></li>
+                <li>{{ call_detail.finalSipCode }}</li>
+                <li><strong>Call End Sub Reason</strong></li>
+                <li>{{ call_detail.callEndSubReason }}</li>
+                <li><strong>Final SIP Code Phrase</strong></li>
+                <li>{{ call_detail.finalSipCodePhrase }}</li>
+                <li><strong>Trunk Fully Qualified Domain Name</strong></li>
+                <li>{{ call_detail.trunkFullyQualifiedDomainName }}</li>
+                <li><strong>Media Bypass Enabled</strong></li>
+                <li>{{ call_detail.mediaBypassEnabled }}</li>
+            </ul>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock %}

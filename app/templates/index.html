@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<main role="main">
+<h2>Teams Operator CDR Records</h2>
+<div id="responsive">
+  <table class="table table-striped">
+      <thead>
+          <tr>
+              <th>Call ID</th>
+              <th>User Principal Name</th>
+              <th>Start Date Time</th>
+              <th>End Date Time</th>
+              <th>Caller Number</th>
+              <th>Callee Number</th>
+              <th>Duration</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for row in operator_data %}
+              <tr>
+                <td class="fs-6"><a href="{{ url_for('call_details', path='op', id=row.id) }}">{{ row.callId }}</a></td>
+                <td class="fs-6">{{ row.userPrincipalName }}</td>
+                <td class="fs-6">{{ row.startDateTime }}</td>
+                <td class="fs-6">{{ row.endDateTime }}</td>
+                  <td class="fs-6">{{ row.callerNumber }}</td>
+                  <td class="fs-6">{{ row.calleeNumber }}</td>
+                  <td class="fs-6">{{ row.duration }}</td>
+              </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+
+  <h2>Teams Direct Routing Call Records</h2>
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Correlation ID</th>
+            <th>User Principal Name</th>
+            <th>Start Date Time</th>
+            <th>End Date Time</th>
+            <th>Caller Number</th>
+            <th>Callee Number</th>
+            <th>Duration</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in dr_data %}
+        <tr>
+            <td class="fs-6"><a href="{{ url_for('call_details', path='dr', id=row.id) }}">{{ row.correlationId }}</a></td>
+            <td class="fs-6">{{ row.userPrincipalName }}</td>
+            <td class="fs-6">{{ row.startDateTime }}</td>
+            <td class="fs-6">{{ row.endDateTime }}</td>
+            <td class="fs-6">{{ row.callerNumber }}</td>
+            <td class="fs-6">{{ row.calleeNumber }}</td>
+            <td class="fs-6">{{ row.duration }}</td>
+        </tr>
+        {% endfor %}
+</div>
+{% endblock %}
