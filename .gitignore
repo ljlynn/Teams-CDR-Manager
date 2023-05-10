@@ -4,3 +4,5 @@ __pycache__/app.cpython-38.pyc
 __pycache__/cosmos.cpython-38.pyc
 __pycache__/graph.cpython-38.pyc
 __pycache__/startup.cpython-38.pyc
+app/flask_session/
+flask_session/
