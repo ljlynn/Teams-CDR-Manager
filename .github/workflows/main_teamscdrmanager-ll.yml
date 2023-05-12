@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 env:
-  WORKING_DIRECTORY: 'app/'         # set this to the path to your path of working directory inside github repository, defaults to the repository root
+  WORKING_DIRECTORY: './app'         # set this to the path to your path of working directory inside github repository, defaults to the repository root
   PYTHON_VERSION: '3.9' 
   STARTUP_COMMAND: ''  
 
@@ -21,7 +21,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
       - name: Set up Python version
         working-directory: ${{ env.WORKING_DIRECTORY }}
         uses: actions/setup-python@v1
@@ -29,10 +28,11 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Create and start virtual environment
-        working-directory: ${{ env.WORKING_DIRECTORY }}
         run: |
           python -m venv venv
           source venv/bin/activate
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+          
       
       - name: Install dependencies
         run: pip install -r ${{ env.WORKING_DIRECTORY }}/requirements.txt
@@ -46,6 +46,7 @@ jobs:
           path: |
             . 
             !venv/
+          working-directory: ${{ env.WORKING_DIRECTORY }}
 
   deploy:
     runs-on: ubuntu-latest
