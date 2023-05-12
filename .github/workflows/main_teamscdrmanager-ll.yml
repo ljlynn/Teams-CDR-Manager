@@ -21,8 +21,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Set up Python version
+        working-directory: ${{ env.WORKING_DIRECTORY }}
         uses: actions/setup-python@v1
         with:
           python-version: ${{ env.PYTHON_VERSION }}
@@ -56,12 +58,14 @@ jobs:
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
+        working-directory: ${{ env.WORKING_DIRECTORY }}
         with:
           name: python-app
           path: .
           
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
+        working-directory: ${{ env.WORKING_DIRECTORY }}
         id: deploy-to-webapp
         with:
           app-name: 'TeamsCDRManager-ll'
