@@ -22,7 +22,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python version
-        working-directory: ${{ env.WORKING_DIRECTORY }}
         uses: actions/setup-python@v1
         with:
           python-version: ${{ env.PYTHON_VERSION }}
