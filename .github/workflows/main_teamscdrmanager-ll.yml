@@ -21,7 +21,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Set up Python version
         working-directory: ${{ env.WORKING_DIRECTORY }}
