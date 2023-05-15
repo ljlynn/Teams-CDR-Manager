@@ -44,7 +44,6 @@ msal-extensions==1.0.0
 msgraph-core==1.0.0a4
 msgraph-sdk==1.0.0a12
 multidict==6.0.4
-pkg_resources==0.0.0
 portalocker==2.7.0
 pprintpp==0.4.0
 pycparser==2.21
