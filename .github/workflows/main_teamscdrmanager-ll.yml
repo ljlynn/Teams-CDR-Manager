@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 env:
-  WORKING_DIRECTORY: './app'         # set this to the path to your path of working directory inside github repository, defaults to the repository root
+  WORKING_DIRECTORY: 'app/'         # set this to the path to your path of working directory inside github repository, defaults to the repository root
   PYTHON_VERSION: '3.9' 
   STARTUP_COMMAND: ''  
 
@@ -46,7 +46,6 @@ jobs:
           path: |
             ${{ env.WORKING_DIRECTORY }}
             !venv/
-          working-directory: ${{ env.WORKING_DIRECTORY }}
 
   deploy:
     runs-on: ubuntu-latest
